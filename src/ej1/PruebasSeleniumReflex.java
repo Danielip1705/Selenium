@@ -51,9 +51,38 @@ class PruebasSeleniumReflex {
 	void test4() {
 		WebElement buscadores = driver1.findElement(By.id("buscadores"));
 		buscadores.click();
-		WebElement paginaBuscadores = driver1.findElement(By.id("page-buscadores"));
+		WebElement paginaBuscadores = driver1.findElement(By.id("pageBus-buscadores"));
 		String textoBuscadores = paginaBuscadores.getText();
 		assertEquals("Buscadores", textoBuscadores);
 	}
-
+	//Comprobar si existe el enlace de redes
+		@Test
+		void test5() {
+			WebElement buscadores = driver1.findElement(By.id("buscadores"));
+			buscadores.click();
+			WebElement google = driver1.findElement(By.id("google"));
+			google.click();
+			String url = driver1.getCurrentUrl();
+			assertEquals("https://www.google.es/", url);
+		}
+		
+		@Test
+		void test6() {
+			WebElement buscadores = driver1.findElement(By.id("buscadores"));
+			buscadores.click();
+			WebElement google = driver1.findElement(By.id("bing"));
+			google.click();
+			String url = driver1.getCurrentUrl();
+			assertEquals("https://www.bing.com/", url);
+		}
+		
+		@Test
+		void test7() {
+			WebElement buscadores = driver1.findElement(By.id("buscadores"));
+			buscadores.click();
+			WebElement google = driver1.findElement(By.id("baidu"));
+			google.click();
+			String url = driver1.getCurrentUrl();
+			assertEquals("https://www.baidu.com/index.htm", url);
+		}
 }
