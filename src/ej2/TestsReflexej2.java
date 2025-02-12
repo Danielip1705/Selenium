@@ -17,7 +17,7 @@ class TestsReflexej2 {
 	    @BeforeAll
 	    static void setURL() {
 	        driver1 = new ChromeDriver();
-	        driver1.get("http://localhost:3001/");
+	        driver1.get("http://localhost:3000/");
 
 	    }
 
@@ -115,5 +115,46 @@ class TestsReflexej2 {
 	        assertEquals("", inputCorreo);
 	    }
 	    
-
+	    //Test para comprobar que existe el informacion en el check
+	    @Test
+	    void comprobarTextoCasillaInformacion() {
+	        WebElement elemento = driver1.findElement(By.id("info"));
+	        String textoCheck = elemento.getAttribute("value");
+	        String info = "Deseo recibir información sobre novedades y ofertas";
+	        assertEquals(info, textoCheck);
+	    }
+	    
+	    //Test para comprobar que el check de la info esta presionado por defecto
+	    @Test
+	    void comprobarCasillaInformacionPresionado() {
+	    	WebElement elemento = driver1.findElement(By.id("info"));
+	    	String presionado = elemento.getAttribute("aria-checked");
+	    	assertEquals("true", presionado);
+	    }
+	    
+	    //Test para comprobar en el check el texto de la normativa
+	    @Test
+	    void comprobarTextoCasillaNormativa() {
+	    	WebElement elemento = driver1.findElement(By.id("normativa"));
+	    	String textoCheck = elemento.getAttribute("value");
+	    	String normativa = "Declaro haber leido y aceptar las condiciones generales del programa y la normativa sobre protección de datos";
+	    	assertEquals(normativa, textoCheck);
+	    }
+	    
+	  //Test para comprobar que el check de la info esta presionado por defecto
+	    @Test
+	    void comprobarCasillaNormativaPresionado() {
+	    	WebElement elemento = driver1.findElement(By.id("normativa"));
+	    	elemento.click();
+	    	String presionado = elemento.getAttribute("aria-checked");
+	    	assertEquals("true", presionado);
+	    }
+	    
+	    //Test para comprobar el texto del boton
+	    @Test
+	    void comprobarBoton() {
+	    	WebElement elemento = driver1.findElement(By.id("texto-btn"));
+	    	String presionado = elemento.getText();
+	    	assertEquals("Enviar", presionado);
+	    }
 }
